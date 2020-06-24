@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+     <!-- Required meta tags -->
+     <meta charset="UTF-8">
+     <meta name="viewport"
+           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>TamaWear</title>
+ 
+     <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"></link>
+    
+
+     <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+       <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+       <title>TamaWear</title>
+    
+       
+    
+    </head>
+    <body>
+        <div class="container-fluid">
+
+            <div class="row min-vh-100">
+               
+
+                    <div class="col-12">
+                        <header class="row">
+                            <!-- Top Nav -->
+                            <div class="col-12 bg-dark py-2 d-md-block d-none">
+                                <div class="row">
+                                    <div class="col-auto mr-auto">
+                                        <ul class="top-nav">
+                                            <li>
+                                                <a href="tel:+123-456-7890"><i class="fa fa-phone-square mr-2"></i>+216-56-171-120</a>
+                                            </li>
+                                            <li>
+                                                <a href="mailto:mail@ecom.com"><i class="fa fa-envelope mr-2"></i>Tamawear@Tamawear.com</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-auto">
+                                        {% if session['USERNAME']==null %}
+                                      
+                                              
+                                        <ul class="top-nav">
+                                            <li>
+                                                <a href="{{url_for('signin')}}"><i class="fas fa-user-edit mr-2"></i>Register</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url_for('login')}}"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
+                                            </li>
+                                        </ul>
+                                        {% else %}
+                                        <ul class="top-nav">
+                                            <li>
+                                               <a href=""> <i class="fas fa-user-edit mr-2"></i>{{session['USERNAME']}}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url_for('logout')}}"><i class="fas fa-sign-in-alt mr-2"></i>Log out</a>
+                                            </li>
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Top Nav -->
+        
+                            <!-- Header -->
+                            <div class="col-12 bg-white pt-4">
+                                
+                                <div class="row">
+                                    {% if session['USERNAME']=='anonyme' %}
+                                    {% set user = dataU -%}
+                                    <div class="col-lg-auto">
+                                        <div class="site-logo text-center text-lg-left">
+                                            <a href="{{url_for('indexU',idU= user)}}">Tama-Wear</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-auto text-center text-lg-right header-item-holder">
+                                       
+                                        <a href="{{url_for('cart')}}" class="header-item" >
+                                            <span id="header-qty" ></span>
+                                            
+                                        </a>
+                                            <a href="{{url_for('cart')}}" class="header-item" >
+                                            <i class="fas fa-shopping-bag" ></i> <span id="header-nbr" ></span>
+                                            
+                                            </a>
+                                    </div>
+                                
+                                     {% else %}
+                                        {% set user = dataU -%}
+                                        <div class="col-lg-auto">
+                                            <div class="site-logo text-center text-lg-left">
+                                              <a href="{{url_for('indexU',idU= user)}}">Tama-Wear</a>
+                                            </div>
+                                        </div>
+                                      
+                                            <div class="col-lg-auto text-center text-lg-right header-item-holder">
+                                       
+                                            <a href="{{url_for('cart')}}" class="header-item" >
+                                                <span id="header-qty" ></span>
+                                                
+                                            </a>
+                                            <a href="{{url_for('cart')}}" class="header-item" >
+                                                <i class="fas fa-shopping-bag" ></i> <span id="header-nbr" ></span>
+                                                
+                                            </a>
+                                            
+                                           
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                       
+                                
+                              
+        
+                            </div>
+                            <!-- Header -->
+        
+                        </header>
+                    </div>
+                    
+
+
+           {% block heading %}  {% endblock %}
+
+
+
+
+
+
+
+    
+
+
+                {% block body %}
+                
+                
+                
+                {% endblock %}
+
+
+
+
+
+
+
+                <div class="col-12 align-self-end">
+                    <!-- Footer -->
+                    <footer class="row">
+                        <div class="col-12 bg-dark text-white pb-3 pt-5">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-4 text-center text-sm-left mb-sm-0 mb-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="footer-logo">
+                                                <a href="{{url_for('index')}}">Tama-Wear</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <address>
+                                                05 Becha Street<br>
+                                                Tunis, Tunisia
+                                            </address>
+                                        </div>
+                                        <div class="col-12">
+                                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-8 text-center text-sm-left mb-sm-0 mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-uppercase">
+                                            <h4>Who are we?</h4>
+                                        </div>
+                                        <div class="col-12 text-justify">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-3 col-5 ml-lg-auto ml-sm-0 ml-auto mb-sm-0 mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-uppercase">
+                                            <h4>Quick Links</h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <ul class="footer-nav">
+                                                <li>
+                                                    <a href="#">Home</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Contact Us</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">About Us</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Privacy Policy</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Terms & Conditions</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-sm-2 col-4 mr-auto mb-sm-0 mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-uppercase text-underline">
+                                            <h4>Help</h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <ul class="footer-nav">
+                                                <li>
+                                                    <a href="#">FAQs</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Shipping</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Returns</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Track Order</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Report Fraud</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 text-center text-sm-left">
+                                    <div class="row">
+                                        <div class="col-12 text-uppercase">
+                                            <h4>Newsletter</h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Enter your email..." required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-outline-light text-uppercase">Subscribe</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- Footer -->
+                </div>
+        
+    
+        
+
+
+
+
+
+         <!-- Optional JavaScript -->
+           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+            
+            <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    </body>
+</html>
